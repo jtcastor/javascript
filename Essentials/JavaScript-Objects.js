@@ -83,6 +83,78 @@ for (let movie of movies) {
 // ------------------------------------------------------------
 // ------------------------------------------------------------
 
+class Node {
+  constructor(value, prev, next) {
+    this.value = value;
+    this.prev = prev || null;
+    this.next = next || null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = this.tail = null;
+    this.length = 0;
+  }
+  push(value) {
+    let newNode = new Node(value);
+    if(!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+  // add to end of list / tail
+  // append(value) {
+  //   // if list is empty
+  //   if (!this.tail) {
+  //     this.head = this.tail = new Node(value);
+  //     this.length++;
+  //   } else {
+  //     let oldTail = this.tail;
+  //     this.tail = new Node(value);
+  //     oldTail.next = this.tail;
+  //     //this.tail.prev = oldTail;
+  //     this.length++;
+  //   }
+  // }
+}
+
+function solution(A){
+  let list = new LinkedList();
+  for( let i = 0; i < A.length; i++ ){
+    //list.append(A[i]);
+    //console.log(A[i]);
+    if(A[i] === 1) {
+      list.push(A[i]);
+    }
+    if(A[i] === 4) {
+      list.push(A[i]);
+    }
+    if(A[i] === 2) {
+      list.push(A[i]);
+    }
+    if(A[i] === -1) {
+      list.push(A[i]);
+    }
+      // if(!node)
+      //     node = new Node(a[i]);
+      // else {
+      //     temp = new Node(a[i]);
+      //     temp.next = node;
+      //     node = temp;
+      // }
+  }
+  return list;
+}
+console.log(solution([1,4,-1,3,2]));
+
+
 
 // ------------------------------------------------------------
 // OOP Objects Literals
