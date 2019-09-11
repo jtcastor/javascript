@@ -20,6 +20,49 @@ person[selection] = 'Mary';
 
 console.log(person.name);
 
+// ------------------------------------------------------------
+// OOP Objects Literals
+// ------------------------------------------------------------
+
+const circle = {
+    radius: 1,            // Property
+    location: {
+        x: 1,
+        y: 1
+    }
+    draw: function() {    // Method
+
+    }
+};
+
+ciclce.draw();
+
+
+// ------------------------------------------------------------
+// OOP Object Factories/Constructor
+// ------------------------------------------------------------
+
+// Factory Function
+function createCircle (radius) {
+    return {
+        radius,               // If the Key and the value are the same you can remove one
+        draw: function() {    // Method
+             console.log('draw');
+        }
+    };
+}
+const circle = createCircle(1);
+circle.draw();
+
+// Constructor Function
+function Circle(radius) {
+    this.radius = radius;
+    this.draw = function() {
+        console.log('draw');
+    }
+}
+const another = new Circle(1);
+
 
 // Store and access data
 
@@ -380,3 +423,59 @@ let priceRanges = [
 let restaruant = [
     { averagePerPerson: 5 },
 ];
+
+// ------------------------------------------------------------
+// OOP Stopwatch example
+// ------------------------------------------------------------
+
+function Stopwatch() {
+    let startTime, endTime, running, duration = 0;
+
+    this.start = function() {
+        if (running)
+            throw new Error('Stopwatch has already started');
+
+        running = true;
+
+        startTime = new Date();
+    }
+
+    this.stop = function() {
+        if (!running)
+            throw new Error('Stopwatch is not started.');
+
+        running = false;
+
+        endTime = new Date();
+
+        const seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+        duration += seconds;
+    }
+
+    this.reset = function() {
+        startTime = null;
+        endTime = null;
+        running = false;
+        duration = 0;
+    }
+
+    Object.defineProperty(this, 'duration', {
+        get: function() { return duration; }
+    });
+
+}
+
+
+// Hour
+// If Hour is between 6am and 12pm: Good morning!
+// If it is between 12pm and 6pm: Good afternoon!
+// Otherwise: Good evening!
+
+let hour = 10;
+
+if (hour >= 6 && hour < 12)
+    console.log('Good morning!');
+else if (hour >= 12 && hour < 18)
+    console.log('Good afternoon!');
+else
+    console.log('Good Evening!');
